@@ -12,8 +12,8 @@ public class StudentTest {
         String firstName = "Leon";
         String lastName = "Hunter";
         Double[] examScores = { 100.0, 95.0, 123.0, 96.0 };
-        ArrayList<Double> alExamScore=new ArrayList<>(Arrays.asList(examScores));
-        Student student = new Student(firstName, lastName, alExamScore);
+       //ArrayList<Double> alExamScore=new ArrayList<>(Arrays.asList(examScores));
+        Student student = new Student(firstName, lastName, examScores);
         String expected= "Exam Scores:\n"+
                                       "Exam 1 -> 100\n"+
                                       "Exam 2 -> 95\n"+
@@ -32,8 +32,7 @@ public class StudentTest {
         String firstName = "Leon";
         String lastName = "Hunter";
         Double[] examScores = { };
-        ArrayList<Double> alExamScore=new ArrayList<>(Arrays.asList(examScores));
-        Student student = new Student(firstName, lastName, alExamScore);
+        Student student = new Student(firstName, lastName, examScores);
         String expected="Exam Scores:\n"+
                 "Exam 1 -> 100\n";
         // When
@@ -49,8 +48,8 @@ public class StudentTest {
         String firstName = "Leon";
         String lastName = "Hunter";
         Double[] examScores = { 100.0 };
-        ArrayList<Double> alExamScore=new ArrayList<>(Arrays.asList(examScores));
-        Student student = new Student(firstName, lastName, alExamScore);
+      //  ArrayList<Double> alExamScore=new ArrayList<>(Arrays.asList(examScores));
+        Student student = new Student(firstName, lastName, examScores);
         String expected="Exam Scores:\n"+
                 "Exam 1 -> 150\n";
 
@@ -62,16 +61,35 @@ public class StudentTest {
        Assert.assertEquals(expected,actual);
     }
     @Test
-    public void getAverageExamScore(){
+    public void getAverageExamScoreTest(){
         String firstName = "Leon";
         String lastName = "Hunter";
         Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
-        ArrayList<Double> alExamScore=new ArrayList<>(Arrays.asList(examScores));
-        Student student = new Student(firstName, lastName, alExamScore);
+        Student student = new Student(firstName, lastName, examScores);
         Double expected=125.0;
 
         // When
         Double actual = student.getAverageExamScore();
+
+        // Then
+        Assert.assertEquals(expected,actual);
+    }
+    @Test
+    public void overrideStringTest(){
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
+        Student student = new Student(firstName, lastName, examScores);
+        String expected= "Student Name: Leon Hunter\n"+
+                "Average Score: 125.0\n"+
+                "Exam Scores:\n"+
+                "Exam 1 -> 100\n"+
+                "Exam 2 -> 150\n"+
+                "Exam 3 -> 250\n"+
+                "Exam 4 -> 0\n";
+        // When
+        String actual = student.toString();
 
         // Then
         Assert.assertEquals(expected,actual);
